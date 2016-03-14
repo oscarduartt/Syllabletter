@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="letras">
+        <item>@string/vowels</item>
+        <item>@string/consonant_b</item>
+        <item>@string/consonant_c</item>
+        <item>@string/consonant_d</item>
+        <item>@string/consonant_f</item>
+        <item>@string/consonant_g</item>
+        <item>@string/consonant_h</item>
+        <item>@string/consonant_j</item>
+        <item>@string/consonant_k</item>
+        <item>@string/consonant_l</item>
+        <item>@string/consonant_m</item>
+        <item>@string/consonant_n</item>
+        <item>@string/consonant_ñ</item>
+        <item>@string/consonant_p</item>
+        <item>@string/consonant_q</item>
+        <item>@string/consonant_r</item>
+        <item>@string/consonant_s</item>
+        <item>@string/consonant_t</item>
+        <item>@string/consonant_v</item>
+        <item>@string/consonant_w</item>
+        <item>@string/consonant_x</item>
+        <item>@string/consonant_y</item>
+        <item>@string/consonant_z</item>
+    </string-array>
+
+    <string-array name="vowels">
+        <item>@string/question_mark</item>
+        <item>@string/vowel_a</item>
+        <item>@string/vowel_e</item>
+        <item>@string/vowel_i</item>
+        <item>@string/vowel_o</item>
+        <item>@string/vowel_u</item>
+    </string-array>
+</resources>

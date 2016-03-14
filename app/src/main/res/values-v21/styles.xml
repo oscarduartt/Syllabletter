@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/text_color_dark</item>
+        <item name="android:textColorPrimaryInverse">@color/text_light</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+    </style>
+
+    <style name="AppTheme.Blue" parent="AppTheme">
+        <item name="android:colorPrimary">@color/blue</item>
+        <item name="android:colorPrimaryDark">@color/blue_dark</item>
+        <item name="android:textColorPrimary">@color/text_light</item>
+        <item name="android:statusBarColor">@color/blue_dark</item>
+        <item name="android:windowBackground">@color/background_blue</item>
+        <item name="android:colorAccent">@color/red_dark</item>
+    </style>
+
+    <style name="AppTheme.Green" parent="AppTheme">
+        <item name="android:colorPrimary">@color/green</item>
+        <item name="android:colorPrimaryDark">@color/green_dark</item>
+        <item name="android:textColorPrimary">@color/text_light</item>
+        <item name="android:statusBarColor">@color/green_dark</item>
+        <item name="android:windowBackground">@color/background_green</item>
+        <item name="android:colorAccent">@color/yellow</item>
+    </style>
+
+    <style name="AppTheme.Red" parent="AppTheme">
+        <item name="android:colorPrimary">@color/red</item>
+        <item name="android:colorPrimaryDark">@color/red_dark</item>
+        <item name="android:textColorPrimary">@color/text_light</item>
+        <item name="android:statusBarColor">@color/red_dark</item>
+        <item name="android:windowBackground">@color/background_red</item>
+        <item name="android:colorAccent">@color/yellow</item>
+    </style>
+
+    <style name="AppTheme.Yellow" parent="AppTheme">
+        <item name="android:colorPrimary">@color/yellow</item>
+        <item name="android:colorPrimaryDark">@color/yellow_dark</item>
+        <item name="android:textColorPrimary">@color/text_light</item>
+        <item name="android:statusBarColor">@color/yellow_dark</item>
+        <item name="android:windowBackground">@color/background_yellow</item>
+        <item name="android:colorAccent">@color/red_dark</item>
+    </style>
+
+    <style name="AppTheme.IconSmall">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="MaterialAnimations.TextAppearance.Title" parent="android:TextAppearance.Material.Title">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="MaterialAnimations.TextAppearance.Title.Inverse" parent="android:TextAppearance.Material.Title">
+        <item name="android:textColor">?android:textColorPrimaryInverse</item>
+    </style>
+
+</resources>

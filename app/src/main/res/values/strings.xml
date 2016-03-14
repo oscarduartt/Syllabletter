@@ -1,3 +1,51 @@
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/tools">
     <string name="app_name">Syllabletter</string>
+
+    <!-- Menu -->
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="listen_to_learn">Listen To Learn</string>
+    <string name="missing_vowels">Missing Vowels</string>
+    <string name="sliding_syllables">Sliding Syllables</string>
+    <string name="forming_words">Forming Words</string>
+    <string name="transition_game">transition_game</string>
+
+    <!-- Listen To Learn -->
+    <string name="explanation">Explicación</string>
+    <string name="explanation_qu">La letra \"Q\" se utiliza principalmente ante las vocales \"E\", \"I\", mediante la interposición de una \"U\" que normalmente es muda.</string>
+    <string name="vowel_a">A</string>
+    <string name="vowel_e">E</string>
+    <string name="vowel_i">I</string>
+    <string name="vowel_o">O</string>
+    <string name="vowel_u">U</string>
+    <string name="vowels">VOCALES</string>
+    <string name="consonant_b">B</string>
+    <string name="consonant_c">C</string>
+    <string name="consonant_d">D</string>
+    <string name="consonant_f">F</string>
+    <string name="consonant_g">G</string>
+    <string name="consonant_h">H</string>
+    <string name="consonant_j">J</string>
+    <string name="consonant_k">K</string>
+    <string name="consonant_l">L</string>
+    <string name="consonant_m">M</string>
+    <string name="consonant_n">N</string>
+    <string name="consonant_ñ">Ñ</string>
+    <string name="consonant_p">P</string>
+    <string name="consonant_q">Q</string>
+    <string name="consonant_r">R</string>
+    <string name="consonant_s">S</string>
+    <string name="consonant_t">T</string>
+    <string name="consonant_v">V</string>
+    <string name="consonant_w">W</string>
+    <string name="consonant_x">X</string>
+    <string name="consonant_y">Y</string>
+    <string name="consonant_z">Z</string>
+    <string name="consontant_vowel"><xliff:g id="consonante">%1$s</xliff:g><xliff:g id="vocal">%2$s</xliff:g></string>
+    <string name="consontant_q_vowel"><xliff:g id="consonante">%1$s</xliff:g><xliff:g id="vocal">%2$s</xliff:g><xliff:g id="vocal">%3$s</xliff:g></string>
+    <string name="question_mark">\?</string>
+    <string name="correct">¡CORRECTO!</string>
+    <string name="incorrect">¡INCORRECTO!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
