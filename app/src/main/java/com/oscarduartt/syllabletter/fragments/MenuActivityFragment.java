@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.oscarduartt.syllabletter.R;
+import com.oscarduartt.syllabletter.activities.ListenToLearnActivity;
+import com.oscarduartt.syllabletter.activities.MissingVowelsActivity;
 import com.oscarduartt.syllabletter.objects.Game;
 import com.oscarduartt.syllabletter.utilities.TransitionHelper;
 
@@ -44,7 +46,7 @@ public class MenuActivityFragment extends Fragment {
         final ImageView ivFormingWords = (ImageView) v.findViewById(R.id.shared_target_forming_words);
         ivFormingWords.setColorFilter(ContextCompat.getColor(getContext(), R.color.yellow), PorterDuff.Mode.SRC_IN);
 
-        /*View.OnClickListener onClickListener = new View.OnClickListener() {
+        View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
@@ -58,11 +60,11 @@ public class MenuActivityFragment extends Fragment {
                         break;
                     case R.id.btn_sliding_syllables:
                         game = new Game(getString(R.string.sliding_syllables), R.color.red);
-                        transitionToActivity(SlidingSyllablesActivity.class, ivSlidingSyllables, game, R.string.transition_game);
+                        //transitionToActivity(SlidingSyllablesActivity.class, ivSlidingSyllables, game, R.string.transition_game);
                         break;
                     case R.id.btn_forming_words:
                         game = new Game(getString(R.string.forming_words), R.color.yellow);
-                        transitionToActivity(FormingWordsActivity.class, ivFormingWords, game, R.string.transition_game);
+                        //transitionToActivity(FormingWordsActivity.class, ivFormingWords, game, R.string.transition_game);
                         break;
                 }
             }
@@ -71,7 +73,7 @@ public class MenuActivityFragment extends Fragment {
         acbListenToLearn.setOnClickListener(onClickListener);
         acbMissingVowels.setOnClickListener(onClickListener);
         acbSlidingSyllables.setOnClickListener(onClickListener);
-        acbFormingWords.setOnClickListener(onClickListener);*/
+        acbFormingWords.setOnClickListener(onClickListener);
 
         return v;
     }

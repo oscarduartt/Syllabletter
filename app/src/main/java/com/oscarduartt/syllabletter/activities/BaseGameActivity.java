@@ -2,7 +2,9 @@ package com.oscarduartt.syllabletter.activities;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
+import android.graphics.PorterDuff;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
@@ -12,8 +14,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.oscarduartt.syllabletter.R;
+import com.oscarduartt.syllabletter.objects.Game;
 
 /**
  * Created by oilopez on 14/03/2016.
@@ -87,9 +92,9 @@ public class BaseGameActivity extends AppCompatActivity {
         });
     }
 
-    /*private void hideTarget() {
+    private void hideTarget() {
         findViewById(R.id.shared_target).setVisibility(View.GONE);
-    }*/
+    }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void animateRevealShow(View viewRoot) {
@@ -104,14 +109,14 @@ public class BaseGameActivity extends AppCompatActivity {
         anim.start();
     }
 
-   /* protected void bindData(Game game) {
+    protected void bindData(Game game) {
         if (game != null) {
             ImageView imageView = (ImageView) findViewById(R.id.shared_target);
             imageView.setColorFilter(ContextCompat.getColor(this, game.getColor()), PorterDuff.Mode.SRC_IN);
             TextView textView = (TextView) findViewById(R.id.title);
             textView.setText(game.getTitle());
         }
-    }*/
+    }
 
     protected void setupWindowAnimations() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

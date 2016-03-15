@@ -1,0 +1,388 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.ListenToLearnActivityFragment">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardElevation="@dimen/elevation"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:cardUseCompatPadding="true">
+
+        <Spinner
+            android:id="@+id/spn_options_listen_to_learn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:spinnerMode="dialog" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_explanation_listen_to_learn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:foregroundGravity="center_horizontal"
+        android:visibility="gone"
+        card_view:cardElevation="@dimen/elevation"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/explanation"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/explanation_qu"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/cl_a_listen_to_learn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_a_listen_to_learn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight=".1"
+                        android:foregroundGravity="center_horizontal"
+                        card_view:cardElevation="@dimen/elevation"
+                        card_view:cardPreventCornerOverlap="false"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:id="@+id/linear_a_listen_to_learn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_consonant_vowel_a_listen_to_learn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/fab_mini_margin"
+                                android:gravity="center"
+                                android:padding="@dimen/tv_vowel_padding"
+                                android:text="@string/vowel_a"
+                                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_audio_vowel_a_listen_to_learn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_mini_margin"
+                    android:src="@android:drawable/ic_media_play"
+                    app:backgroundTint="?android:attr/colorPrimaryDark"
+                    app:elevation="@dimen/elevation"
+                    app:fabSize="mini"
+                    app:layout_anchor="@id/cv_a_listen_to_learn"
+                    app:layout_anchorGravity="center|right" />
+
+            </android.support.design.widget.CoordinatorLayout>
+
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_e_listen_to_learn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight=".1"
+                        android:foregroundGravity="center_horizontal"
+                        card_view:cardElevation="@dimen/elevation"
+                        card_view:cardPreventCornerOverlap="false"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:id="@+id/linear_e_listen_to_learn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_consonant_vowel_e_listen_to_learn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/fab_mini_margin"
+                                android:gravity="center"
+                                android:padding="@dimen/tv_vowel_padding"
+                                android:text="@string/vowel_e"
+                                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_audio_vowel_e_listen_to_learn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_mini_margin"
+                    android:src="@android:drawable/ic_media_play"
+                    app:backgroundTint="?android:attr/colorPrimaryDark"
+                    app:elevation="@dimen/elevation"
+                    app:fabSize="mini"
+                    app:layout_anchor="@id/cv_e_listen_to_learn"
+                    app:layout_anchorGravity="center|right" />
+
+            </android.support.design.widget.CoordinatorLayout>
+
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_i_listen_to_learn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight=".1"
+                        android:foregroundGravity="center_horizontal"
+                        card_view:cardElevation="@dimen/elevation"
+                        card_view:cardPreventCornerOverlap="false"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:id="@+id/linear_i_listen_to_learn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_consonant_vowel_i_listen_to_learn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/fab_mini_margin"
+                                android:gravity="center"
+                                android:padding="@dimen/tv_vowel_padding"
+                                android:text="@string/vowel_i"
+                                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_audio_vowel_i_listen_to_learn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_mini_margin"
+                    android:src="@android:drawable/ic_media_play"
+                    app:backgroundTint="?android:attr/colorPrimaryDark"
+                    app:elevation="@dimen/elevation"
+                    app:fabSize="mini"
+                    app:layout_anchor="@id/cv_i_listen_to_learn"
+                    app:layout_anchorGravity="center|right" />
+
+            </android.support.design.widget.CoordinatorLayout>
+
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/cl_o_listen_to_learn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_o_listen_to_learn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight=".1"
+                        android:foregroundGravity="center_horizontal"
+                        card_view:cardElevation="@dimen/elevation"
+                        card_view:cardPreventCornerOverlap="false"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:id="@+id/linear_o_listen_to_learn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_consonant_vowel_o_listen_to_learn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/fab_mini_margin"
+                                android:gravity="center"
+                                android:padding="@dimen/tv_vowel_padding"
+                                android:text="@string/vowel_o"
+                                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_audio_vowel_o_listen_to_learn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_mini_margin"
+                    android:src="@android:drawable/ic_media_play"
+                    app:backgroundTint="?android:attr/colorPrimaryDark"
+                    app:elevation="@dimen/elevation"
+                    app:fabSize="mini"
+                    app:layout_anchor="@id/cv_o_listen_to_learn"
+                    app:layout_anchorGravity="center|right" />
+
+            </android.support.design.widget.CoordinatorLayout>
+
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/cl_u_listen_to_learn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_u_listen_to_learn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight=".1"
+                        android:foregroundGravity="center_horizontal"
+                        card_view:cardElevation="@dimen/elevation"
+                        card_view:cardPreventCornerOverlap="false"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:id="@+id/linear_u_listen_to_learn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_consonant_vowel_u_listen_to_learn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/fab_mini_margin"
+                                android:gravity="center"
+                                android:padding="@dimen/tv_vowel_padding"
+                                android:text="@string/vowel_u"
+                                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_audio_vowel_u_listen_to_learn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_mini_margin"
+                    android:src="@android:drawable/ic_media_play"
+                    app:backgroundTint="?android:attr/colorPrimaryDark"
+                    app:elevation="@dimen/elevation"
+                    app:fabSize="mini"
+                    app:layout_anchor="@id/cv_u_listen_to_learn"
+                    app:layout_anchorGravity="center|right" />
+
+            </android.support.design.widget.CoordinatorLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
