@@ -21,6 +21,12 @@
         <activity
             android:name=".activities.MissingVowelsActivity"
             android:theme="@style/AppTheme.Green" />
+        <activity
+            android:name=".activities.SlidingSyllablesActivity"
+            android:theme="@style/AppTheme.Red" />
+        <activity
+            android:name=".activities.FormingWordsActivity"
+            android:theme="@style/AppTheme.Yellow" />
     </application>
 
 </manifest>
