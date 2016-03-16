@@ -7,8 +7,8 @@
     <dimen name="fab_mini_margin">10dp</dimen>
     <dimen name="tv_vowel_padding">10dp</dimen>
     <dimen name="tv_vowel_margin">10dp</dimen>
-    <dimen name="tv_answer_margin">10dp</dimen>
-    <dimen name="tv_answer_size">36sp</dimen>
+    <dimen name="tv_result_margin">10dp</dimen>
+    <dimen name="tv_result_size">36sp</dimen>
     <dimen name="cv_padding">10dp</dimen>
     <dimen name="spn_margin_container">5dp</dimen>
 </resources>

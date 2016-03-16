@@ -61,10 +61,10 @@
                     android:id="@+id/tv_answer_missing_vowels"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/tv_answer_margin"
+                    android:layout_margin="@dimen/tv_result_margin"
                     android:gravity="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="@dimen/tv_answer_size"
+                    android:textSize="@dimen/tv_result_size"
                     android:textStyle="bold"
                     android:visibility="gone" />
             </android.support.v7.widget.CardView>

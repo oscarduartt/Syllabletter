@@ -1,10 +1,14 @@
 package com.oscarduartt.syllabletter.fragments;
 
 import android.content.ClipData;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,7 @@ import com.oscarduartt.syllabletter.objects.Word;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -26,20 +31,25 @@ import java.util.Random;
  */
 public class SlidingSyllablesActivityFragment extends Fragment implements View.OnDragListener {
 
+    private static final String KEY_WORD = "key_word";
+    private static final String KEY_POSITION = "key_position";
+    private TextToSpeech textToSpeech;
     private int position;
     private List<Word> words;
     private FloatingActionButton fab;
     private LinearLayout linearWord, linearOptions;
-    private TextView tvAnswer;
+    private TextView tvResult;
     private Handler handler = new Handler();
     private String[] syllables;
     private ArrayList<LinearLayout> container_answers = new ArrayList<>();
     private ArrayList<Integer> used_view_randoms;
     private ArrayList<View> view_answers = new ArrayList<>();
+    private boolean first_time;
+    private Word word;
+    private CardView cvAnswersOptions, cvResult;
 
-    public SlidingSyllablesActivityFragment newInstance(int position) {
+    public SlidingSyllablesActivityFragment newInstance(boolean first_time, int position) {
         SlidingSyllablesActivityFragment fragment = new SlidingSyllablesActivityFragment();
-        fragment.position = position;
         Word[] objects = new Word[]{new Word("CONEJO", R.mipmap.conejo, "CO,NE,JO"),
                 new Word("GALLINA", R.mipmap.gallina, "GA,LLI,NA"),
                 new Word("GATO", R.mipmap.gato, "GA,TO"),
@@ -47,7 +57,18 @@ public class SlidingSyllablesActivityFragment extends Fragment implements View.O
                 new Word("PERRO", R.mipmap.perro, "PE,RRO"),
                 new Word("TORTUGA", R.mipmap.tortuga, "TOR,TU,GA")};
         fragment.words = Arrays.asList(objects);
+        fragment.position = position;
+        fragment.first_time = first_time;
         return fragment;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
     }
 
     @Override
@@ -55,20 +76,41 @@ public class SlidingSyllablesActivityFragment extends Fragment implements View.O
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_sliding_syllables, container, false);
+
+        textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    Locale locale = new Locale("spa", "ESP");
+                    textToSpeech.setLanguage(locale);
+                }
+            }
+        });
+
+        cvAnswersOptions = (CardView) view.findViewById(R.id.cv_answers_options_sliding_syllables);
+        cvResult = (CardView) view.findViewById(R.id.cv_result_sliding_syllables);
+
         ImageView image = (ImageView) view.findViewById(R.id.img_sliding_syllables);
+        tvResult = (TextView) view.findViewById(R.id.tv_result_sliding_syllables);
 
-        int aux = 0;
-        while (position == aux) {
-            aux = new Random().nextInt(words.size());
+        if (savedInstanceState == null) {
+            int aux = 0;
+            while (position == aux) {
+                aux = new Random().nextInt(words.size());
+            }
+            position = aux;
+            word = words.get(position);
+        } else {
+            word = (Word) savedInstanceState.getSerializable(KEY_WORD);
+            position = savedInstanceState.getInt(KEY_POSITION);
         }
-        position = aux;
 
-        image.setImageResource(words.get(position).getImage());
+        image.setImageResource(word.getImage());
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fab.show();
+                play();
             }
         });
         fab = (FloatingActionButton) view.findViewById(R.id.fab_sliding_syllables);
@@ -77,14 +119,14 @@ public class SlidingSyllablesActivityFragment extends Fragment implements View.O
             @Override
             public void onClick(View v) {
                 fab.hide();
-                getFragmentManager().beginTransaction().replace(R.id.game_container, new SlidingSyllablesActivityFragment().newInstance(position)).commit();
+                getFragmentManager().beginTransaction().replace(R.id.game_container, new SlidingSyllablesActivityFragment().newInstance(false, position)).commit();
             }
         });
 
         linearWord = (LinearLayout) view.findViewById(R.id.ly_word_sliding_syllables);
         linearOptions = (LinearLayout) view.findViewById(R.id.ly_options_sliding_syllables);
 
-        syllables = words.get(position).getSyllables().split(",");
+        syllables = word.getSyllables().split(",");
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -130,8 +172,6 @@ public class SlidingSyllablesActivityFragment extends Fragment implements View.O
                                     used_view_randoms.add(new_random);
                                 }
                             }
-
-                            //linearOptions.addView(view_item_container_syllable_option);
                         }
                     });
                 }
@@ -139,9 +179,30 @@ public class SlidingSyllablesActivityFragment extends Fragment implements View.O
         });
         thread.start();
 
-        tvAnswer = (TextView) view.findViewById(R.id.tv_answer_sliding_syllables);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (first_time) {
+                first_time = false;
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        cvAnswersOptions.setVisibility(View.VISIBLE);
+                    }
+                }, 1000);
+            } else {
+                cvAnswersOptions.setVisibility(View.VISIBLE);
+            }
+        } else {
+            cvAnswersOptions.setVisibility(View.VISIBLE);
+        }
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(KEY_WORD, word);
+        outState.putInt(KEY_POSITION, position);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -176,7 +237,7 @@ public class SlidingSyllablesActivityFragment extends Fragment implements View.O
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    tvAnswer.setVisibility(View.GONE);
+                                    tvResult.setVisibility(View.GONE);
                                 }
                             });
                         }
@@ -204,16 +265,22 @@ public class SlidingSyllablesActivityFragment extends Fragment implements View.O
             builder.append(linear.getTag().toString());
         }
 
-        if (words.get(position).getName().equals(builder.toString())) {
-            tvAnswer.setText(getString(R.string.correct));
+        if (word.getName().equals(builder.toString())) {
+            cvResult.setVisibility(View.VISIBLE);
+            tvResult.setText(getString(R.string.correct));
+            tvResult.setTextColor(ContextCompat.getColor(getContext(), R.color.green_dark));
             fab.show();
+            play();
         } else {
-            tvAnswer.setText(getString(R.string.incorrect));
+            cvResult.setVisibility(View.VISIBLE);
+            tvResult.setText(getString(R.string.incorrect));
+            tvResult.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+            fab.hide();
         }
         handler.post(new Runnable() {
             @Override
             public void run() {
-                tvAnswer.setVisibility(View.VISIBLE);
+                tvResult.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -229,5 +296,13 @@ public class SlidingSyllablesActivityFragment extends Fragment implements View.O
             }
         }
         return new_random;
+    }
+
+    private void play() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            textToSpeech.speak(word.getName(), TextToSpeech.QUEUE_FLUSH, null, null);
+        } else {
+            textToSpeech.speak(word.getName(), TextToSpeech.QUEUE_FLUSH, null);
+        }
     }
 }
