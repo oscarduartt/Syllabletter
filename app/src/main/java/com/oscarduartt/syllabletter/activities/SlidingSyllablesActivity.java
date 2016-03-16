@@ -25,7 +25,7 @@ public class SlidingSyllablesActivity extends BaseGameActivity {
             }
         }
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.game_container, new SlidingSyllablesActivityFragment().newInstance()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.game_container, new SlidingSyllablesActivityFragment().newInstance(0)).commit();
         }
     }
 
