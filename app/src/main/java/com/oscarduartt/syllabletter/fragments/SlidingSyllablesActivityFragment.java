@@ -260,29 +260,36 @@ public class SlidingSyllablesActivityFragment extends Fragment implements View.O
     }
 
     private void checkAnswer() {
-        StringBuilder builder = new StringBuilder();
-        for (LinearLayout linear : container_answers) {
-            builder.append(linear.getTag().toString());
-        }
-
-        if (word.getName().equals(builder.toString())) {
-            cvResult.setVisibility(View.VISIBLE);
-            tvResult.setText(getString(R.string.correct));
-            tvResult.setTextColor(ContextCompat.getColor(getContext(), R.color.green_dark));
-            fab.show();
-            play();
-        } else {
-            cvResult.setVisibility(View.VISIBLE);
-            tvResult.setText(getString(R.string.incorrect));
-            tvResult.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
-            fab.hide();
-        }
-        handler.post(new Runnable() {
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                tvResult.setVisibility(View.VISIBLE);
+                final StringBuilder builder = new StringBuilder();
+                for (LinearLayout linear : container_answers) {
+                    builder.append(linear.getTag().toString());
+                }
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (word.getName().equals(builder.toString())) {
+                            cvResult.setVisibility(View.VISIBLE);
+                            tvResult.setText(getString(R.string.correct));
+                            tvResult.setTextColor(ContextCompat.getColor(getContext(), R.color.green_dark));
+                            fab.show();
+                            play();
+                        } else {
+                            cvResult.setVisibility(View.VISIBLE);
+                            tvResult.setText(getString(R.string.incorrect));
+                            tvResult.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+                            fab.hide();
+                        }
+                    }
+                });
             }
         });
+        thread.start();
+
+        tvResult.setVisibility(View.VISIBLE);
     }
 
 

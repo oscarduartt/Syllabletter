@@ -89,7 +89,7 @@ public class ListenToLearnActivityFragment extends Fragment {
         fabO.setOnClickListener(onClickListener);
         fabU.setOnClickListener(onClickListener);
 
-        ArrayAdapter<String> adapter_spinner = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, Arrays.asList(getResources().getStringArray(R.array.letras)));
+        ArrayAdapter<String> adapter_spinner = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, Arrays.asList(getResources().getStringArray(R.array.letters)));
         spnOptions.setAdapter(adapter_spinner);
         spnOptions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

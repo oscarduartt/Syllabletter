@@ -1,6 +1,8 @@
 package com.oscarduartt.syllabletter.fragments;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,11 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.oscarduartt.syllabletter.R;
@@ -41,9 +42,9 @@ public class MissingVowelsActivityFragment extends Fragment {
     private FloatingActionButton fab;
     private LinearLayout linearWord;
     private Handler handler = new Handler();
-    private ArrayList<View> views_word = new ArrayList<>();
+    private ArrayList<TextView> views_word = new ArrayList<>();
     private TextView tvAnswer;
-    private ArrayList<Spinner> options_word = new ArrayList<>();
+    private ArrayList<TextView> options_word = new ArrayList<>();
     private boolean first_time;
     private Word word;
 
@@ -132,7 +133,7 @@ public class MissingVowelsActivityFragment extends Fragment {
                             !Character.toString(palabra[i]).equals(getString(R.string.vowel_o)) &&
                             !Character.toString(palabra[i]).equals(getString(R.string.vowel_u))) {
                         final View item = LayoutInflater.from(getContext()).inflate(R.layout.item_letter, null);
-                        final TextView letter = (TextView) item.findViewById(R.id.tv_letter);
+                        final TextView letter = (TextView) item.findViewById(R.id.tv_item_letter);
                         letter.setText(Character.toString(palabra[i]));
                         letter.setTag(Character.toString(palabra[i]));
                         handler.post(new Runnable() {
@@ -145,24 +146,12 @@ public class MissingVowelsActivityFragment extends Fragment {
                         views_word.add(letter);
 
                     } else {
-                        final View item_container = LayoutInflater.from(getContext()).inflate(R.layout.item_container_letter, null);
-                        final Spinner spn_vocal = (Spinner) item_container.findViewById(R.id.spn_vowel);
-
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, Arrays.asList(getResources().getStringArray(R.array.vowels)));
-                        spn_vocal.setAdapter(adapter);
-                        spn_vocal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        final View item_container = LayoutInflater.from(getContext()).inflate(R.layout.item_letter_option, null);
+                        final TextView tvLetterOption = (TextView) item_container.findViewById(R.id.tv_item_letter_option);
+                        tvLetterOption.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                spn_vocal.setTag(parent.getSelectedItem().toString());
-
-                                if (checkFullAnswer()) {
-                                    checkOptions();
-                                }
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
+                            public void onClick(View v) {
+                                createAlertOption(v);
                             }
                         });
 
@@ -172,8 +161,8 @@ public class MissingVowelsActivityFragment extends Fragment {
                                 linearWord.addView(item_container);
                             }
                         });
-                        options_word.add(spn_vocal);
-                        views_word.add(spn_vocal);
+                        options_word.add(tvLetterOption);
+                        views_word.add(tvLetterOption);
                     }
                 }
             }
@@ -207,8 +196,8 @@ public class MissingVowelsActivityFragment extends Fragment {
     }
 
     private boolean checkFullAnswer() {
-        for (Spinner spn : options_word) {
-            if (spn.getSelectedItemPosition() == 0) {
+        for (TextView option : options_word) {
+            if (option.getText().equals("")) {
                 return false;
             }
         }
@@ -217,8 +206,8 @@ public class MissingVowelsActivityFragment extends Fragment {
 
     private void checkOptions() {
         StringBuilder builder = new StringBuilder();
-        for (View v : views_word) {
-            builder.append(v.getTag());
+        for (TextView v : views_word) {
+            builder.append(v.getText());
         }
 
         Log.i("word", word.getName());
@@ -242,6 +231,22 @@ public class MissingVowelsActivityFragment extends Fragment {
         } else {
             textToSpeech.speak(word.getName(), TextToSpeech.QUEUE_FLUSH, null);
         }
+    }
+
+    private void createAlertOption(final View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(getString(R.string.vowels))
+                .setCancelable(true);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.vowels));
+        builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ((TextView)view).setText(adapter.getItem(which));
+                if(checkFullAnswer()){
+                    checkOptions();
+                }
+            }
+        }).create().show();
     }
 
 }

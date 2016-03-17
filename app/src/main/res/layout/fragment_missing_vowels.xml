@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.MissingVowelsActivityFragment">
@@ -27,7 +28,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:foregroundGravity="center_horizontal"
@@ -51,7 +52,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:foregroundGravity="center_horizontal"
-                android:visibility="gone"
                 card_view:cardElevation="@dimen/elevation"
                 card_view:cardPreventCornerOverlap="false"
                 card_view:cardUseCompatPadding="true">
@@ -79,5 +79,5 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/stat_notify_sync_noanim"
-        app:backgroundTint="?attr/colorPrimaryDark" />
+        app:backgroundTint="?android:attr/colorPrimaryDark" />
 </android.support.design.widget.CoordinatorLayout>

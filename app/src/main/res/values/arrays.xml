@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="letras">
+    <string-array name="letters">
         <item>@string/vowels</item>
         <item>@string/consonant_b</item>
         <item>@string/consonant_c</item>
@@ -27,7 +27,6 @@
     </string-array>
 
     <string-array name="vowels">
-        <item>@string/question_mark</item>
         <item>@string/vowel_a</item>
         <item>@string/vowel_e</item>
         <item>@string/vowel_i</item>

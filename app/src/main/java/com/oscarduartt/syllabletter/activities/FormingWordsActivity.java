@@ -25,7 +25,7 @@ public class FormingWordsActivity extends BaseGameActivity {
             }
         }
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.game_container, new FormingWordsActivityFragment().newInstance()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.game_container, new FormingWordsActivityFragment().newInstance(true, 0)).commit();
         }
     }
 

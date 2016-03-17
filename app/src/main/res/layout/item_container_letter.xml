@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spn_vowel"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_margin="@dimen/spn_margin_container"
-        android:background="@color/background_green"
-        android:spinnerMode="dialog" />
+    <LinearLayout
+        android:id="@+id/ly_container_letter"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="1dp"
+        android:background="@color/background_container_light"
+        android:gravity="center"
+        android:orientation="vertical" />
 </LinearLayout>

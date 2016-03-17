@@ -8,14 +8,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
-        android:background="@color/background_container"
+        android:background="@color/background_container_light"
         android:gravity="center"
         android:orientation="vertical"
         android:minHeight="40dp"
         android:minWidth="40dp">
 
         <TextView
-            android:id="@+id/tv_item_letter"
+            android:id="@+id/tv_item_letter_option"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
