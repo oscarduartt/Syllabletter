@@ -19,9 +19,9 @@ import android.widget.TextView;
 
 import com.oscarduartt.syllabletter.R;
 import com.oscarduartt.syllabletter.objects.Word;
+import com.oscarduartt.syllabletter.utilities.Utilities;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -31,8 +31,6 @@ import java.util.Random;
  */
 public class FormingWordsActivityFragment extends Fragment implements View.OnDragListener {
 
-    private static final String KEY_WORD = "key_word";
-    private static final String KEY_POSITION = "key_position";
     private TextToSpeech textToSpeech;
     private int position;
     private List<Word> words;
@@ -50,13 +48,7 @@ public class FormingWordsActivityFragment extends Fragment implements View.OnDra
 
     public FormingWordsActivityFragment newInstance(boolean first_time, int position) {
         FormingWordsActivityFragment fragment = new FormingWordsActivityFragment();
-        Word[] objects = new Word[]{new Word("CONEJO", R.mipmap.conejo),
-                new Word("GALLINA", R.mipmap.gallina),
-                new Word("GATO", R.mipmap.gato),
-                new Word("GUSANO", R.mipmap.gusano),
-                new Word("PERRO", R.mipmap.perro),
-                new Word("TORTUGA", R.mipmap.tortuga)};
-        fragment.words = Arrays.asList(objects);
+        fragment.words = Utilities.getElements();
         fragment.position = position;
         fragment.first_time = first_time;
         return fragment;
@@ -92,15 +84,21 @@ public class FormingWordsActivityFragment extends Fragment implements View.OnDra
         tvResult = (TextView) view.findViewById(R.id.tv_result_forming_words);
 
         if (savedInstanceState == null) {
-            int aux = 0;
+           /* int aux = 0;
             while (position == aux) {
                 aux = new Random().nextInt(words.size());
             }
             position = aux;
-            word = words.get(position);
+            word = words.get(position);*/
+            if (position < words.size()) {
+                word = words.get(position++);
+            } else {
+                position = 0;
+                word = words.get(position);
+            }
         } else {
-            word = (Word) savedInstanceState.getSerializable(KEY_WORD);
-            position = savedInstanceState.getInt(KEY_POSITION);
+            word = (Word) savedInstanceState.getSerializable(Utilities.KEY_WORD);
+            position = savedInstanceState.getInt(Utilities.KEY_POSITION);
         }
 
         image.setImageResource(word.getImage());
@@ -108,7 +106,7 @@ public class FormingWordsActivityFragment extends Fragment implements View.OnDra
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                play();
+                Utilities.play(textToSpeech, word.getName());
             }
         });
         fab = (FloatingActionButton) view.findViewById(R.id.fab_forming_words);
@@ -165,7 +163,7 @@ public class FormingWordsActivityFragment extends Fragment implements View.OnDra
                             if (view_answers.size() == letters.length) {
                                 used_view_randoms = new ArrayList<>();
                                 for (int i = 0; i < view_answers.size(); i++) {
-                                    int new_random = getRandom(view_answers.size(), used_view_randoms);
+                                    int new_random = Utilities.getRandom(view_answers.size(), used_view_randoms);
                                     linearOptions.addView(view_answers.get(new_random));
                                     used_view_randoms.add(new_random);
                                 }
@@ -198,8 +196,8 @@ public class FormingWordsActivityFragment extends Fragment implements View.OnDra
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(KEY_WORD, word);
-        outState.putInt(KEY_POSITION, position);
+        outState.putSerializable(Utilities.KEY_WORD, word);
+        outState.putInt(Utilities.KEY_POSITION, position);
         super.onSaveInstanceState(outState);
     }
 
@@ -267,7 +265,7 @@ public class FormingWordsActivityFragment extends Fragment implements View.OnDra
                     @Override
                     public void run() {
                         if (word.getName().equals(builder.toString())) {
-                            play();
+                            Utilities.play(textToSpeech, word.getName());
                             cvResult.setVisibility(View.VISIBLE);
                             tvResult.setText(getString(R.string.correct));
                             tvResult.setTextColor(ContextCompat.getColor(getContext(), R.color.green_dark));
@@ -287,28 +285,5 @@ public class FormingWordsActivityFragment extends Fragment implements View.OnDra
         thread.start();
 
         tvResult.setVisibility(View.VISIBLE);
-
-
-    }
-
-
-    public int getRandom(int max_number, ArrayList<Integer> usadas) {
-        int new_random = new Random().nextInt(max_number);
-        if (usadas.size() > 0) {
-            for (Integer usado : usadas) {
-                if (new_random == usado) {
-                    new_random = getRandom(max_number, usadas);
-                }
-            }
-        }
-        return new_random;
-    }
-
-    private void play() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            textToSpeech.speak(word.getName(), TextToSpeech.QUEUE_FLUSH, null, null);
-        } else {
-            textToSpeech.speak(word.getName(), TextToSpeech.QUEUE_FLUSH, null);
-        }
     }
 }

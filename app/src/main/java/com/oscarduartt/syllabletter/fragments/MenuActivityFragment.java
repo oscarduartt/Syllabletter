@@ -25,6 +25,7 @@ import com.oscarduartt.syllabletter.activities.MissingVowelsActivity;
 import com.oscarduartt.syllabletter.activities.SlidingSyllablesActivity;
 import com.oscarduartt.syllabletter.objects.Game;
 import com.oscarduartt.syllabletter.utilities.TransitionHelper;
+import com.oscarduartt.syllabletter.utilities.Utilities;
 
 import java.util.Locale;
 
@@ -146,20 +147,12 @@ public class MenuActivityFragment extends Fragment {
                 alert.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        play(acetHiddenLevel.getText().toString());
+                        Utilities.play(textToSpeech, acetHiddenLevel.getText().toString());
                     }
                 });
             }
         });
 
         alert.show();
-    }
-
-    private void play(String text) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
-        } else {
-            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        }
     }
 }

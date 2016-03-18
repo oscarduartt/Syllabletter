@@ -10,32 +10,27 @@ import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.oscarduartt.syllabletter.R;
 import com.oscarduartt.syllabletter.objects.Word;
+import com.oscarduartt.syllabletter.utilities.Utilities;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MissingVowelsActivityFragment extends Fragment {
 
-    private static final String KEY_WORD = "key_word";
-    private static final String KEY_POSITION = "key_position";
     private TextToSpeech textToSpeech;
     private int position;
     private List<Word> words = new ArrayList<>();
@@ -50,13 +45,7 @@ public class MissingVowelsActivityFragment extends Fragment {
 
     public MissingVowelsActivityFragment newInstance(boolean first_time, int position) {
         MissingVowelsActivityFragment fragment = new MissingVowelsActivityFragment();
-        Word[] objects = new Word[]{new Word("CONEJO", R.mipmap.conejo),
-                new Word("GALLINA", R.mipmap.gallina),
-                new Word("GATO", R.mipmap.gato),
-                new Word("GUSANO", R.mipmap.gusano),
-                new Word("PERRO", R.mipmap.perro),
-                new Word("TORTUGA", R.mipmap.tortuga)};
-        fragment.words = Arrays.asList(objects);
+        fragment.words = Utilities.getElements();
         fragment.first_time = first_time;
         fragment.position = position;
         return fragment;
@@ -90,7 +79,7 @@ public class MissingVowelsActivityFragment extends Fragment {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                play();
+                Utilities.play(textToSpeech, word.getName());
             }
         });
         linearWord = (LinearLayout) view.findViewById(R.id.ly_word_missing_vowels);
@@ -106,15 +95,24 @@ public class MissingVowelsActivityFragment extends Fragment {
         });
 
         if (savedInstanceState == null) {
-            int aux = 0;
+            //RANDOM
+          /*int aux = 0;
             while (position == aux) {
                 aux = new Random().nextInt(words.size());
             }
             position = aux;
-            word = words.get(position);
+            word = words.get(position);*/
+
+            if (position < words.size()) {
+                word = words.get(position++);
+            } else {
+                position = 0;
+                word = words.get(position);
+            }
+
         } else {
-            word = (Word) savedInstanceState.getSerializable(KEY_WORD);
-            position = savedInstanceState.getInt(KEY_POSITION);
+            word = (Word) savedInstanceState.getSerializable(Utilities.KEY_WORD);
+            position = savedInstanceState.getInt(Utilities.KEY_POSITION);
         }
 
         assert word != null;
@@ -190,8 +188,8 @@ public class MissingVowelsActivityFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(KEY_WORD, word);
-        outState.putInt(KEY_POSITION, position);
+        outState.putSerializable(Utilities.KEY_WORD, word);
+        outState.putInt(Utilities.KEY_POSITION, position);
         super.onSaveInstanceState(outState);
     }
 
@@ -210,27 +208,17 @@ public class MissingVowelsActivityFragment extends Fragment {
             builder.append(v.getText());
         }
 
-        Log.i("word", word.getName());
-        Log.i("answer", builder.toString());
         if (word.getName().equals(builder.toString())) {
             tvAnswer.setText(getString(R.string.correct));
             tvAnswer.setTextColor(ContextCompat.getColor(getContext(), R.color.green_dark));
             fab.show();
-            play();
+            Utilities.play(textToSpeech, word.getName());
         } else {
             tvAnswer.setText(getString(R.string.incorrect));
             tvAnswer.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
             fab.hide();
         }
         tvAnswer.setVisibility(View.VISIBLE);
-    }
-
-    private void play() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            textToSpeech.speak(word.getName(), TextToSpeech.QUEUE_FLUSH, null, null);
-        } else {
-            textToSpeech.speak(word.getName(), TextToSpeech.QUEUE_FLUSH, null);
-        }
     }
 
     private void createAlertOption(final View view) {
@@ -241,8 +229,8 @@ public class MissingVowelsActivityFragment extends Fragment {
         builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ((TextView)view).setText(adapter.getItem(which));
-                if(checkFullAnswer()){
+                ((TextView) view).setText(adapter.getItem(which));
+                if (checkFullAnswer()) {
                     checkOptions();
                 }
             }

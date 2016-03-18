@@ -1,6 +1,5 @@
 package com.oscarduartt.syllabletter.fragments;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.CoordinatorLayout;
@@ -16,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.oscarduartt.syllabletter.R;
+import com.oscarduartt.syllabletter.utilities.Utilities;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -151,14 +151,6 @@ public class ListenToLearnActivityFragment extends Fragment {
                 break;
         }
 
-        play(fileName.toLowerCase());
-    }
-
-    public void play(String word) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null, null);
-        } else {
-            textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null);
-        }
+        Utilities.play(textToSpeech, fileName.toLowerCase());
     }
 }
