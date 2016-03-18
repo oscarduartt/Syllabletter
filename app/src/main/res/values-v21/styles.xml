@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorAccent">@color/red</item>
         <item name="android:textColorPrimary">@color/text_color_dark</item>
         <item name="android:textColorPrimaryInverse">@color/text_light</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
@@ -48,6 +48,17 @@
         <item name="android:statusBarColor">@color/yellow_dark</item>
         <item name="android:windowBackground">@color/background_yellow</item>
         <item name="android:colorAccent">@color/red_dark</item>
+    </style>
+
+    <style name="AppTheme.AlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColorPrimary">@color/blue</item>
+        <item name="colorAccent">@color/red</item>
+    </style>
+
+    <style name="AppTheme.AppCompatEditText" parent="AppTheme">
+        <item name="colorControlNormal">@color/blue</item>
+        <item name="colorControlActivated">@color/blue</item>
+        <item name="colorControlHighlight">@color/blue</item>
     </style>
 
     <style name="AppTheme.IconSmall">

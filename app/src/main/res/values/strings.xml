@@ -52,4 +52,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_sliding_syllables">SlidingSyllablesActivity</string>
     <string name="title_activity_forming_words">FormingWordsActivity</string>
+    <string name="write_and_play">Escribe y reproduce</string>
+    <string name="play">Reproducir</string>
 </resources>

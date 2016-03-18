@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:theme="@style/AppTheme">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/write_and_play"
+        android:id="@+id/textView"
+        android:textStyle="bold"
+        android:textColor="@color/blue" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/acetHiddenLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppCompatEditText"
+        android:inputType="textMultiLine" />
+</LinearLayout>
