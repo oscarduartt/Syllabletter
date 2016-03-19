@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="oscarduartt.com.syllabletter.SlidingSyllablesActivityFragment">
+    tools:context="oscarduartt.com.syllabletter.FormingWordsActivityFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/img_sliding_syllables"
+            android:id="@+id/img_forming_words"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -25,10 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cv_answers_options_sliding_syllables"
+                android:id="@+id/cv_answers_options_forming_words"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:foregroundGravity="center_horizontal"
@@ -44,7 +45,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/ly_word_sliding_syllables"
+                        android:id="@+id/ly_word_forming_words"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -53,7 +54,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ly_options_sliding_syllables"
+                        android:id="@+id/ly_options_forming_words"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -64,10 +65,9 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cv_result_sliding_syllables"
+                android:id="@+id/cv_result_forming_words"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:foregroundGravity="center_horizontal"
                 android:visibility="gone"
                 card_view:cardElevation="@dimen/elevation"
@@ -75,7 +75,7 @@
                 card_view:cardUseCompatPadding="true">
 
                 <TextView
-                    android:id="@+id/tv_result_sliding_syllables"
+                    android:id="@+id/tv_result_forming_words"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/tv_result_margin"
@@ -92,7 +92,7 @@
 
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_sliding_syllables"
+        android:id="@+id/fab_forming_words"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

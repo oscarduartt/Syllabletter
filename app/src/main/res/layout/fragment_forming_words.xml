@@ -98,6 +98,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_media_play"
-        app:backgroundTint="?android:attr/colorPrimaryDark" />
+        app:backgroundTint="?attr/colorPrimaryDark" />
 
 </android.support.design.widget.CoordinatorLayout>

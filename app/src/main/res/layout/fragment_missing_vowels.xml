@@ -5,7 +5,8 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MissingVowelsActivityFragment">
+    tools:context=".fragments.MissingVowelsActivityFragment"
+    android:visibility="gone">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,5 +80,5 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/stat_notify_sync_noanim"
-        app:backgroundTint="?android:attr/colorPrimaryDark" />
+        app:backgroundTint="?attr/colorPrimaryDark" />
 </android.support.design.widget.CoordinatorLayout>
